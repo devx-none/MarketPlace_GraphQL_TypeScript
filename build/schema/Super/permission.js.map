@@ -1,0 +1,1 @@
+{"version":3,"file":"permission.js","sourceRoot":"","sources":["../../../src/schema/Super/permission.ts"],"names":[],"mappings":";;AAAA,wDAA0D;AAC1D,mDAAuC;AAEvC,MAAM,UAAU,GAAG;IACjB,KAAK,EAAE;QACL,KAAK,EAAE,4BAAe;KACvB;IACD,QAAQ,EAAE;QACR,GAAG,EAAE,sBAAK;KACX;CACF,CAAC;AAEF,kBAAe,UAAU,CAAC"}
