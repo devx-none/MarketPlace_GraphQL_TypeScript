@@ -7,6 +7,8 @@ export const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
+    role:Role!
+    
   }
 
   enum Role {
@@ -24,6 +26,7 @@ export const typeDefs = gql`
 
   type Query {
     hello: String
+    getAllUsers:[User!]
   }
 
   type Mutation {

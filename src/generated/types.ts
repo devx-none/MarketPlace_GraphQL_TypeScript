@@ -168,6 +168,7 @@ export type Query = {
   __typename?: 'Query';
   admin?: Maybe<Scalars['String']>;
   getAll?: Maybe<Array<Super>>;
+  getAllUsers?: Maybe<Array<User>>;
   hello?: Maybe<Scalars['String']>;
   product?: Maybe<Product>;
   products?: Maybe<Array<Maybe<Product>>>;
@@ -232,6 +233,7 @@ export type UserInput = {
   firstName: Scalars['String'];
   lastName: Scalars['String'];
   password: Scalars['String'];
+  role: Role;
 };
 
 export type Variants = {
@@ -455,6 +457,7 @@ export type ProductResolvers<ContextType = Context, ParentType extends Resolvers
 export type QueryResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   admin?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   getAll?: Resolver<Maybe<Array<ResolversTypes['Super']>>, ParentType, ContextType>;
+  getAllUsers?: Resolver<Maybe<Array<ResolversTypes['User']>>, ParentType, ContextType>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   product?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, RequireFields<QueryProductArgs, 'id'>>;
   products?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
@@ -463,7 +466,7 @@ export type QueryResolvers<ContextType = Context, ParentType extends ResolversPa
   user?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
-export type RoleResolvers = EnumResolverSignature<{ ADMIN?: any, USER?: any }, ResolversTypes['Role']>;
+export type RoleResolvers = EnumResolverSignature<{ SELLER?: any, USER?: any }, ResolversTypes['Role']>;
 
 export type StoreResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Store'] = ResolversParentTypes['Store']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
