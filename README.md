@@ -1,1 +1,0 @@
-# MarketPlace_GraphQL_TypeScript
