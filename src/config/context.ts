@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request ,Response } from 'express';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { pubsub } from './pubsub';
 export interface Context {
