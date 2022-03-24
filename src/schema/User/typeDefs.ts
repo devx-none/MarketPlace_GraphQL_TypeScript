@@ -29,7 +29,14 @@ export const typeDefs = gql`
     getAllUsers:[User!]
   }
 
+type UserLogin{
+  user: User
+  accessToken:String
+} 
+
   type Mutation {
     register(input: UserInput): User!
+    Login(email:String!,password:String!):UserLogin
+
   }
 `;
