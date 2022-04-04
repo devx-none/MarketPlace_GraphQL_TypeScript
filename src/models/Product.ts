@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { IStore, ICategory, IBrand, IUser } from '@models/index';
+import { IStore, ICategory, IBrand } from '@models/index';
 
 // 1. Create an interface representing a document in MongoDB.
 
@@ -31,7 +31,7 @@ export interface IProduct {
   variants: Array<Variants>;
   store: IStore;
   brand: IBrand;
-  category: ICategory;
+  category: Array<ICategory>;
   options: Options;
 }
 
@@ -39,11 +39,11 @@ export interface IProduct {
 const schema = new Schema<IProduct>({
   name: { type: String, required: true },
   store: { type: Schema.Types.ObjectId, ref: 'Store' },
-  category: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+  category: [{ type: Schema.Types.ObjectId, ref: 'Category', required: true }],
   brand: { type: Schema.Types.ObjectId, ref: 'Brand' },
   price: { type: Number, required: true },
   discount: { type: Number, required: true, default: 0 },
-  stock: { type: Number, required: true },
+  stock: { type: Number },
   description: { type: String, required: true },
   thumbnails: [{ type: String, required: true }],
   options: {
@@ -54,9 +54,9 @@ const schema = new Schema<IProduct>({
   variants: [
     {
       _id: false,
-      sku: { type: String, required: true },
-      price: { type: Number, required: true },
-      stock: { type: Number, required: true },
+      sku: { type: String },
+      price: { type: Number },
+      stock: { type: Number },
       dimensions: [
         {
           _id: false,

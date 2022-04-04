@@ -47,8 +47,8 @@ exports.typeDefs = (0, apollo_server_express_1.gql) `
     price: Float!
     thumbnails: [String]!
     discount: Float!
-    brand: Brand!
-    category: Category!
+    brand: Brand
+    category: [Category]!
     store: Store!
     stock: Int!
     variants: [Variants]!
@@ -61,6 +61,8 @@ exports.typeDefs = (0, apollo_server_express_1.gql) `
 
   type Mutation {
     createProduct(input: ProductInput!): Product!
+    deleteProduct(id: String!): Product
+    updateProduct(id: String!, input: ProductInput!): Product
   }
 `;
 //# sourceMappingURL=typeDefs.js.map

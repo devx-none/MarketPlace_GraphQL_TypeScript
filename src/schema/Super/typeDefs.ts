@@ -12,12 +12,7 @@ export const typeDefs = gql`
     files: [Upload!]
   }
 
-  type Image {
-    id: ID
-    src: String!
-    alt: String!
-    type: String
-  }
+  # type Image : [string]
 
   type Super {
     id: ID!
@@ -31,6 +26,6 @@ export const typeDefs = gql`
 
   type Mutation {
     addSuper(input: SuperInput): Super!
-    addImage(input: FileInput): [Image!]
+    addImage(input: FileInput): [String!]
   }
 `;

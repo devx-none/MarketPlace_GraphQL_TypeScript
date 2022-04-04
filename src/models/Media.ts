@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IMedia {
@@ -17,4 +17,4 @@ const MediaSchema = new Schema<IMedia>(
   { timestamps: true }
 );
 
-export const Media = model<IMedia>("Media", MediaSchema);
+export const Media = model<IMedia>('Media', MediaSchema);

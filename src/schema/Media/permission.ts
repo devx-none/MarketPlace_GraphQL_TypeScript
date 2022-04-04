@@ -1,6 +1,6 @@
-import { isAuthenticated } from "@middlewares/permission";
-import { allow } from "graphql-shield";
-
-const permission = {};
+const permission = {
+  Query: {},
+  Mutation: {},
+};
 
 export default permission;

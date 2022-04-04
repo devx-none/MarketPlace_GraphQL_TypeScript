@@ -10,6 +10,11 @@ exports.typeDefs = (0, apollo_server_express_1.gql) `
     thumbnail: String!
   }
 
+  type Query {
+    brands: [Brand]!
+    brand(id: ID!): Brand
+  }
+
   type Mutation {
     createBrand(name: String!, thumbnail: String!): Brand!
     deleteBrand(id: ID!): Brand

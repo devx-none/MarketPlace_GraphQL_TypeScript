@@ -26,7 +26,6 @@ exports.resolvers = {
         },
         addImage: async (_, { input }) => {
             const { files } = input;
-            console.log(files);
             let images = await (0, upload_1.multiFileUpload)(files);
             return images;
         },

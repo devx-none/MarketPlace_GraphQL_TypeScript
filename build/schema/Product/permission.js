@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const permission = {
     Query: {},
-    Mutation: {},
+    Mutation: {
+    // createProduct: and(isAuthenticated, isSeller),
+    },
 };
 exports.default = permission;
 //# sourceMappingURL=permission.js.map

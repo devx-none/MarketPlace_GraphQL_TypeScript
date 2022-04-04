@@ -1,14 +1,12 @@
-import { RedisPubSub } from "graphql-redis-subscriptions";
-import Redis, { RedisOptions } from "ioredis";
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+import Redis, { RedisOptions } from 'ioredis';
+
+const { REDIS_DOMAIN_NAME, REDIS_PORT_NUMBER, REDIS_PASSWORD } = process.env;
 
 const options: RedisOptions = {
-  host: process.env.REDIS_DOMAIN_NAME,
-  port: process.env.REDIS_PORT_NUMBER as number | undefined,
-  password: process.env.REDIS_PASSWORD,
-  retryStrategy: (times) => {
-    // reconnect after
-    return Math.min(times * 50, 2000);
-  },
+  host: REDIS_DOMAIN_NAME,
+  port: REDIS_PORT_NUMBER as undefined,
+  password: REDIS_PASSWORD,
 };
 
 export const pubsub = new RedisPubSub({

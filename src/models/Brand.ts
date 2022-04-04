@@ -1,4 +1,4 @@
-import { Schema, model, ObjectId } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IBrand {

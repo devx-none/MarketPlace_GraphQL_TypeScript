@@ -12,7 +12,7 @@ const schema = new mongoose_1.Schema({
         type: String,
         required: true,
         enum: enums_1.StoreStatus,
-        default: enums_1.StoreStatus.ACTIVE,
+        default: enums_1.StoreStatus.INACTIVE,
     },
     owner: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User' },
 }, { timestamps: true });

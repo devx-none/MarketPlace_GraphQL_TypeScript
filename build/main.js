@@ -6,4 +6,8 @@ const index_1 = require("./schema/index");
 const graphql_middleware_1 = require("graphql-middleware");
 const schema = (0, graphql_middleware_1.applyMiddleware)(index_1.schema, index_1.permissions);
 (0, apollo_1.bootstrap)(schema);
+// for debug purpose
+// mongoose.set('debug', (collectionName, method, query, doc) => {
+//   console.log(`${collectionName}.${method}`, JSON.stringify(query), doc);
+// });
 //# sourceMappingURL=main.js.map

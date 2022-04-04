@@ -8,6 +8,11 @@ export const typeDefs = gql`
     thumbnail: String!
   }
 
+  type Query {
+    brands: [Brand]!
+    brand(id: ID!): Brand
+  }
+
   type Mutation {
     createBrand(name: String!, thumbnail: String!): Brand!
     deleteBrand(id: ID!): Brand

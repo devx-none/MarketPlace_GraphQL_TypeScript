@@ -2,11 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const permission_1 = require("../../middlewares/permission");
 const permission = {
-    Query: {
-        hello: permission_1.isAuthenticated,
-    },
+    Query: {},
     Mutation: {
-        register: permission_1.isAuthenticated,
+        updateRole: permission_1.isAuthenticated,
+        updatePassword: permission_1.isAuthenticated,
     },
 };
 exports.default = permission;

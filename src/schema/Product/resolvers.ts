@@ -1,10 +1,17 @@
 import type { Resolvers } from '@generated/types';
-import { IProduct, Product, IBrand, ICategory, Brand } from '@models/index';
+import {
+  IProduct,
+  Product,
+  IBrand,
+  ICategory,
+  IStore,
+  Store,
+} from '@models/index';
 
 export const resolvers: Resolvers = {
   Query: {
     products: async (parent, args) => {
-      const products: Array<IProduct> = await Product.find();
+      const products: IProduct[] = await Product.find();
       return products;
     },
     product: async (parent, args) => {
@@ -14,20 +21,42 @@ export const resolvers: Resolvers = {
   },
   Mutation: {
     createProduct: async (_, { input }) => {
+      // create product in Product model
       const product: IProduct = await Product.create(input);
+
+      // update product array in Store model
+      const store = await Store.updateOne(
+        { _id: input.store },
+        { $addToSet: { products: product.id } }
+      );
+
+      return product;
+    },
+    deleteProduct: async (_, { id }) => {
+      const product: IProduct | null = await Product.findByIdAndDelete(id);
+      return product;
+    },
+    updateProduct: async (_, { id, input }) => {
+      const product: IProduct | null = await Product.findByIdAndUpdate(
+        id,
+        input,
+        { new: true }
+      );
       return product;
     },
   },
   Product: {
-    brand: async ({ id }) => {
-      const brand: IBrand = await Product.findById(id).populate('brand');
+    brand: async ({ brand: id }, args, { dataloader }) => {
+      const brand: IBrand | null = await dataloader.brand.load(id);
       return brand;
     },
-    category: async ({ id }) => {
-      const category: ICategory = await Product.findById(id).populate(
-        'category'
-      );
-      return category;
+    category: async ({ category: ids }, args, { dataloader }) => {
+      const categories: ICategory[] = await dataloader.category.loadMany(ids);
+      return categories;
+    },
+    store: async ({ store: id }, args, { dataloader }) => {
+      const store: IStore = await dataloader.store.load(id);
+      return store;
     },
   },
 };

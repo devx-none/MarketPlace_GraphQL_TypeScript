@@ -1,6 +1,7 @@
 export enum Role {
   USER = 'USER',
   SELLER = 'SELLER',
+  ADMIN = 'ADMIN',
 }
 
 export enum StoreStatus {
@@ -8,14 +9,7 @@ export enum StoreStatus {
   INACTIVE = 'INACTIVE',
 }
 
-export enum DeliveryType {
-  STANDARD = 'STANDARD',
-  EXPRESS = 'EXPRESS',
-}
-
-export enum DeliveryStatus {
-  PENDING = 'PENDING',
-  SHIPPED = 'SHIPPED',
-  CANCELLED = 'CANCELLED',
-  UNPAID = 'UNPAID'
+export enum Sort {
+  ascending = 'ascending',
+  descending = 'descending',
 }

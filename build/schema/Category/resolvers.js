@@ -4,12 +4,8 @@ exports.resolvers = void 0;
 const index_1 = require("../../models/index");
 exports.resolvers = {
     Mutation: {
-        createCategory: async (_, { name, thumbnail, description }) => {
-            const category = await index_1.Category.create({
-                name,
-                thumbnail,
-                description,
-            });
+        createCategory: async (_, { name, path }) => {
+            const category = await index_1.Category.create({ name, path });
             return category;
         },
         deleteCategory: async (_, { id }) => {
@@ -17,6 +13,11 @@ exports.resolvers = {
             return category;
         },
     },
-    Query: {},
+    Query: {
+        categories: async () => {
+            const categories = await index_1.Category.find();
+            return categories;
+        },
+    },
 };
 //# sourceMappingURL=resolvers.js.map

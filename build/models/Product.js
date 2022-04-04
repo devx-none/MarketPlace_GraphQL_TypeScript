@@ -6,11 +6,11 @@ const mongoose_1 = require("mongoose");
 const schema = new mongoose_1.Schema({
     name: { type: String, required: true },
     store: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Store' },
-    category: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Category' }],
+    category: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Category', required: true }],
     brand: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Brand' },
     price: { type: Number, required: true },
     discount: { type: Number, required: true, default: 0 },
-    stock: { type: Number, required: true },
+    stock: { type: Number },
     description: { type: String, required: true },
     thumbnails: [{ type: String, required: true }],
     options: {
@@ -21,9 +21,9 @@ const schema = new mongoose_1.Schema({
     variants: [
         {
             _id: false,
-            sku: { type: String, required: true },
-            price: { type: Number, required: true },
-            stock: { type: Number, required: true },
+            sku: { type: String },
+            price: { type: Number },
+            stock: { type: Number },
             dimensions: [
                 {
                     _id: false,

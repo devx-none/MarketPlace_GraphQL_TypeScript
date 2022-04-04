@@ -13,6 +13,7 @@ exports.typeDefs = (0, apollo_server_express_1.gql) `
 
   enum Role {
     USER
+    SELLER
     ADMIN
   }
 
@@ -24,12 +25,18 @@ exports.typeDefs = (0, apollo_server_express_1.gql) `
     role: Role!
   }
 
-  type Query {
-    hello: String
+  type AuthPayload {
+    token: String!
+    user: User!
   }
 
+  union AuthResult = AuthPayload | User
+
   type Mutation {
-    register(input: UserInput): User!
+    register(input: UserInput): AuthPayload
+    login(email: String!, password: String!): AuthPayload
+    updateRole(status: String!): AuthResult
+    updatePassword(oldPassword: String!, newPassword: String!): User
   }
 `;
 //# sourceMappingURL=typeDefs.js.map

@@ -7,13 +7,12 @@ export const typeDefs = gql`
     lastName: String!
     email: String!
     password: String!
-    role:Role!
-    
   }
 
   enum Role {
     USER
     SELLER
+    ADMIN
   }
 
   type User {
@@ -24,19 +23,17 @@ export const typeDefs = gql`
     role: Role!
   }
 
-  type Query {
-    hello: String
-    getAllUsers:[User!]
+  type AuthPayload {
+    token: String!
+    user: User!
   }
 
-type UserLogin{
-  user: User
-  accessToken:String
-} 
+  union AuthResult = AuthPayload | User
 
   type Mutation {
-    register(input: UserInput): User!
-    Login(email:String!,password:String!):UserLogin
-
+    register(input: UserInput): AuthPayload
+    login(email: String!, password: String!): AuthPayload
+    updateRole(status: String!): AuthResult
+    updatePassword(oldPassword: String!, newPassword: String!): User
   }
 `;

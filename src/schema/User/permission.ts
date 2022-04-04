@@ -1,12 +1,10 @@
-import { isAuthenticated } from "@middlewares/permission";
-import { allow } from "graphql-shield";
+import { isAuthenticated } from '@middlewares/permission';
 
 const permission = {
-  Query: {
-    hello: isAuthenticated,
-  },
+  Query: {},
   Mutation: {
-    register: isAuthenticated,
+    updateRole: isAuthenticated,
+    updatePassword: isAuthenticated,
   },
 };
 

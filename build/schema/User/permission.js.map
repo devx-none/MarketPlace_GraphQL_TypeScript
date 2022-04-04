@@ -1,1 +1,1 @@
-{"version":3,"file":"permission.js","sourceRoot":"","sources":["../../../src/schema/User/permission.ts"],"names":[],"mappings":";;AAAA,wDAA0D;AAG1D,MAAM,UAAU,GAAG;IACjB,KAAK,EAAE;QACL,KAAK,EAAE,4BAAe;KACvB;IACD,QAAQ,EAAE;QACR,QAAQ,EAAE,4BAAe;KAC1B;CACF,CAAC;AAEF,kBAAe,UAAU,CAAC"}
+{"version":3,"file":"permission.js","sourceRoot":"","sources":["../../../src/schema/User/permission.ts"],"names":[],"mappings":";;AAAA,wDAA0D;AAE1D,MAAM,UAAU,GAAG;IACjB,KAAK,EAAE,EAAE;IACT,QAAQ,EAAE;QACR,UAAU,EAAE,4BAAe;QAC3B,cAAc,EAAE,4BAAe;KAChC;CACF,CAAC;AAEF,kBAAe,UAAU,CAAC"}

@@ -92,7 +92,7 @@ const multiFileUpload = async (files: IFile[]) => {
         type: mimetype.split("/")[0],
       });
       await addImage.save();
-      return addImage;
+      return addImage.id;
     })
   );
 

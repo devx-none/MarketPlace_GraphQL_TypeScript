@@ -7,19 +7,46 @@ export const typeDefs = gql`
     INACTIVE
   }
 
-  input paginate {
-    cursor: String
-    limit: Float
+  # type PaginateStore implements PaginateEntity {
+  #   data: [Store!]!
+  #   pageInfo: PageInfo!
+  # }
+
+  # type Store implements Node {
+  #   id: ID!
+  #   name: String!
+  #   thumbnail: String!
+  #   products: [Product]!
+  #   owner: User!
+  #   status: StoreStatus!
+  # }
+
+  input NumberQueryOperatorInput {
+    eq: String
+    ne: String
+    gt: String
+    gte: String
+    lt: String
+    lte: String
+    in: [String]
+    nin: [String]
+    between: [String]
   }
 
-  type PageInfo {
-    hasNextPage: Boolean!
-    nextCursor: String
+  input StringQueryOperatorInput {
+    eq: String
+    ne: String
+    in: [String]
+    nin: [String]
+    regex: String
   }
 
-  type PaginateStore {
-    data: [Store!]!
-    pageInfo: PageInfo!
+  input ArrayOperatorInput {
+    contains: [String]
+  }
+
+  input StoreFilterInput {
+    id: ID
   }
 
   type Store {
@@ -32,7 +59,8 @@ export const typeDefs = gql`
   }
 
   type Query {
-    stores(input: paginate): PaginateStore
+    # stores(input: paginate): PaginateStore
+    stores(status: StoreStatus, sort: Sort): [Store]
     store(id: String!): Store
   }
 

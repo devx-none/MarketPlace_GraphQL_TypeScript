@@ -5,19 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bootstrap = void 0;
 const express_1 = __importDefault(require("express"));
-const http_1 = require("http");
-const compression_1 = __importDefault(require("compression"));
+const cors_1 = __importDefault(require("cors"));
 const graphql_depth_limit_1 = __importDefault(require("graphql-depth-limit"));
+const compression_1 = __importDefault(require("compression"));
+const ioredis_1 = __importDefault(require("ioredis"));
+const apollo_server_plugin_response_cache_1 = __importDefault(require("apollo-server-plugin-response-cache"));
+const http_1 = require("http");
 const apollo_server_express_1 = require("apollo-server-express");
 const apollo_server_core_1 = require("apollo-server-core");
-const ws_1 = require("ws");
-const ws_2 = require("graphql-ws/lib/use/ws");
 const context_1 = require("./context");
 const db_1 = require("./db");
-const cors_1 = __importDefault(require("cors"));
-const pubsub_1 = require("./pubsub");
 const graphql_upload_1 = require("graphql-upload");
-const isProduction = process.env.NODE_ENV === 'production';
+const WebSocketServer_1 = require("./WebSocketServer");
+const apollo_server_cache_redis_1 = require("apollo-server-cache-redis");
+const redis_1 = require("./redis");
 const port = process.env.PORT || 4000;
 const bootstrap = async (schema) => {
     // Create an Express app and HTTP server; we will attach both the WebSocket
@@ -26,46 +27,22 @@ const bootstrap = async (schema) => {
     const httpServer = (0, http_1.createServer)(app);
     app.use((0, cors_1.default)());
     app.use((0, compression_1.default)());
-    // app.use(
-    //   helmet({
-    //     contentSecurityPolicy: isProduction,
-    //     crossOriginEmbedderPolicy: isProduction,
-    //   })
-    // );
     app.use((0, graphql_upload_1.graphqlUploadExpress)({
         maxFileSize: 10000000,
         maxFiles: 10,
     }));
-    //Files Stream to Azure for now
-    // app.use(
-    //   "/media/:key",
-    //   catchAsync(async (req: Request, res: Response, nex: NextFunction) => {
-    //     const { key } = req.params;
-    //     const url = await getFileStreamAzure(key);
-    //     res.json({ url });
-    //     // (await getFileStreamAzure(key))?.pipe(res);
-    //   })
-    // );
-    // Create our WebSocket server using the HTTP server we just set up.
-    const wsServer = new ws_1.WebSocketServer({
-        server: httpServer,
-        path: '/gql',
-    });
-    // Save the returned server's info so we can shutdown this server later
-    const serverCleanup = (0, ws_2.useServer)({
-        schema,
-        context: () => {
-            return {
-                pubsub: pubsub_1.pubsub,
-            };
-        },
-    }, wsServer);
+    // Create the Web Socket instance, using the schema we created earlier
+    const serverCleanup = (0, WebSocketServer_1.WebSocket)(httpServer, schema);
     // Set up ApolloServer.
     const server = new apollo_server_express_1.ApolloServer({
         introspection: true,
         context: context_1.context,
         schema,
+        cache: new apollo_server_cache_redis_1.BaseRedisCache({
+            client: new ioredis_1.default(redis_1.RedisOptions),
+        }),
         plugins: [
+            (0, apollo_server_plugin_response_cache_1.default)(),
             (0, apollo_server_core_1.ApolloServerPluginDrainHttpServer)({ httpServer }),
             {
                 async serverWillStart() {
@@ -77,8 +54,9 @@ const bootstrap = async (schema) => {
                 },
             },
         ],
-        validationRules: [(0, graphql_depth_limit_1.default)(10)],
+        validationRules: [(0, graphql_depth_limit_1.default)(7)],
         formatError: (error) => {
+            // Remove the internal database error message
             return error;
         },
     });
@@ -93,4 +71,14 @@ const bootstrap = async (schema) => {
     });
 };
 exports.bootstrap = bootstrap;
+//Files Stream to Azure for now
+// app.use(
+//   "/media/:key",
+//   catchAsync(async (req: Request, res: Response, nex: NextFunction) => {
+//     const { key } = req.params;
+//     const url = await getFileStreamAzure(key);
+//     res.json({ url });
+//     // (await getFileStreamAzure(key))?.pipe(res);
+//   })
+// );
 //# sourceMappingURL=apollo.js.map

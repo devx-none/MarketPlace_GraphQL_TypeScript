@@ -8,5 +8,5 @@ const MediaSchema = new mongoose_1.Schema({
     alt: { type: String, required: true },
     type: { type: String, required: true },
 }, { timestamps: true });
-exports.Media = (0, mongoose_1.model)("Media", MediaSchema);
+exports.Media = (0, mongoose_1.model)('Media', MediaSchema);
 //# sourceMappingURL=Media.js.map

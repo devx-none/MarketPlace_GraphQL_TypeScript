@@ -6,14 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.pubsub = void 0;
 const graphql_redis_subscriptions_1 = require("graphql-redis-subscriptions");
 const ioredis_1 = __importDefault(require("ioredis"));
+const { REDIS_DOMAIN_NAME, REDIS_PORT_NUMBER, REDIS_PASSWORD } = process.env;
 const options = {
-    host: process.env.REDIS_DOMAIN_NAME,
-    port: process.env.REDIS_PORT_NUMBER,
-    password: process.env.REDIS_PASSWORD,
-    retryStrategy: (times) => {
-        // reconnect after
-        return Math.min(times * 50, 2000);
-    },
+    host: REDIS_DOMAIN_NAME,
+    port: REDIS_PORT_NUMBER,
+    password: REDIS_PASSWORD,
 };
 exports.pubsub = new graphql_redis_subscriptions_1.RedisPubSub({
     publisher: new ioredis_1.default(options),

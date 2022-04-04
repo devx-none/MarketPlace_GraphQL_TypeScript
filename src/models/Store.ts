@@ -12,6 +12,14 @@ export interface IStore {
   status: StoreStatus;
 }
 
+export interface PaginatedStore {
+  data: Array<IStore>;
+  pageInfo: {
+    hasNextPage: boolean;
+    nextCursor: string | null;
+  };
+}
+
 // 2. Create a Schema corresponding to the document interface.
 const schema = new Schema<IStore>(
   {
@@ -22,7 +30,7 @@ const schema = new Schema<IStore>(
       type: String,
       required: true,
       enum: StoreStatus,
-      default: StoreStatus.ACTIVE,
+      default: StoreStatus.INACTIVE,
     },
     owner: { type: Schema.Types.ObjectId, ref: 'User' },
   },

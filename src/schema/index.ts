@@ -18,7 +18,6 @@ const resolvers = mergeResolvers(resolversArray);
 export const permissions = shield(mergeResolvers(permissionArray) as IRules, {
   fallbackRule: allow,
   allowExternalErrors: true,
-  debug: true,
 });
 
 export const schema = makeExecutableSchema({ typeDefs, resolvers });

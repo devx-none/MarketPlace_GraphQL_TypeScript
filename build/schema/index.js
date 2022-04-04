@@ -17,7 +17,6 @@ const resolvers = (0, merge_1.mergeResolvers)(resolversArray);
 exports.permissions = (0, graphql_shield_1.shield)((0, merge_1.mergeResolvers)(permissionArray), {
     fallbackRule: graphql_shield_1.allow,
     allowExternalErrors: true,
-    debug: true,
 });
 exports.schema = (0, schema_1.makeExecutableSchema)({ typeDefs, resolvers });
 //# sourceMappingURL=index.js.map

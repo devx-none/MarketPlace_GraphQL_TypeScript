@@ -34,11 +34,7 @@ export const resolvers: Resolvers = {
       return superAdmin;
     },
     addImage: async (_, { input }) => {
-      
       const { files } = input!;
-      
-      console.log(files);
-      
       let images = await multiFileUpload(files as IFile[]);
       return images;
     },
