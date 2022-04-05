@@ -1,15 +1,21 @@
 export enum Role {
-  USER = 'USER',
-  SELLER = 'SELLER',
-  ADMIN = 'ADMIN',
+  USER = "USER",
+  SELLER = "SELLER",
 }
 
 export enum StoreStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
 }
 
-export enum Sort {
-  ascending = 'ascending',
-  descending = 'descending',
+export enum DeliveryType {
+  STANDARD = "STANDARD",
+  EXPRESS = "EXPRESS",
+}
+
+export enum DeliveryStatus {
+  PENDING = "PENDING",
+  SHIPPED = "SHIPPED",
+  CANCELLED = "CANCELLED",
+  UNPAID = "UNPAID",
 }
