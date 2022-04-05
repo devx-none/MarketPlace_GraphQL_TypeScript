@@ -9,6 +9,11 @@ export enum StoreStatus {
   INACTIVE = 'INACTIVE',
 }
 
+export enum AccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
 export enum Sort {
   ascending = 'ascending',
   descending = 'descending',
