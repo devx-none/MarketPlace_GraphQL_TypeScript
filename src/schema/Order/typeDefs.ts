@@ -5,7 +5,7 @@ export const typeDefs = gql`
 
 input OrderInput {
     user: String!
-    cart: ID!
+    cartId: String!
     country: String!
     city: String!
     zipCode: Int!
@@ -18,7 +18,8 @@ input OrderInput {
   type Order {
     id: ID!
     user: String!
-    cart: Cart
+    cartId: Cart
+    products: Product
     country: String!
     city: String!
     zipCode: Int!
@@ -28,19 +29,19 @@ input OrderInput {
     traking: String!
     estimatedTime: String!
     
+    
   }
 
   type Cart {
     id: ID!
     user: String!
-    products: [Product]
-    amount: Float!
+    products: [Product]!
+   
 
   }
   type Product {
     id: ID!
     name: String!
-    price: Float!
     discount: Float!
   }
 
@@ -49,7 +50,7 @@ input OrderInput {
   }
 
   type Mutation {
-    createOrder(input: OrderInput!): Order!
+    addOrderByCart(input: OrderInput!): Order!
 
   }
 `;

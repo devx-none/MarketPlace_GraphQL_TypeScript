@@ -1,5 +1,6 @@
 import { Role } from '@ts/enums';
 import { Schema, model } from 'mongoose';
+import { ICart } from '@models/index';
 
 // 1. Create an interface representing a document in MongoDB.
 export interface IUser {
@@ -9,6 +10,7 @@ export interface IUser {
   email: string;
   password: string;
   role: Role;
+  cart: ICart;
 }
 
 // 2. Create a Schema corresponding to the document interface.
@@ -30,7 +32,9 @@ const schema = new Schema<IUser>(
       enum: Role,
       default: Role.USER,
     },
+    cart:{type: Schema.Types.ObjectId, ref: 'cart' }
   },
+
   { timestamps: true }
 );
 

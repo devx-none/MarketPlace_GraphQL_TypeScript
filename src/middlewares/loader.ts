@@ -15,3 +15,4 @@ export const createLoader = (Model: Model<Document>) => {
     loadMany: async (ids: Array<string>) => loader.loadMany(ids),
   };
 };
+// create a dataloader for the given model

@@ -13,6 +13,7 @@ import { db } from './db';
 import cors from 'cors';
 import { pubsub } from './pubsub';
 import { graphqlUploadExpress } from 'graphql-upload';
+// import {InMemoryCache} from "appolo-cache-inmemory";
 
 const isProduction = process.env.NODE_ENV === 'production';
 const port = process.env.PORT || 4000;
@@ -36,7 +37,8 @@ export const bootstrap = async (schema: GraphQLSchema) => {
       maxFiles: 10,
     })
   );
-
+ 
+ 
   //Files Stream to Azure for now
   // app.use(
   //   "/media/:key",
