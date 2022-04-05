@@ -5,7 +5,7 @@ export const typeDefs = gql`
 input CartInput {
     cartId: ID!
     user: String!
-    products: [ID!]!
+    
   }
   type Cart {
     id: ID!
@@ -30,5 +30,6 @@ input CartInput {
 
   type Mutation {
     addProductInCart(input: CartInput!): Cart!
+    updateProductInCart(input: CartInput!): Cart!
   }
 `;

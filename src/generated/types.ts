@@ -36,7 +36,6 @@ export type Cart = {
 
 export type CartInput = {
   cartId: Scalars['ID'];
-  products: Array<Scalars['ID']>;
   user: Scalars['String'];
 };
 
@@ -86,6 +85,7 @@ export type Mutation = {
   deleteCategory?: Maybe<Category>;
   deleteStore?: Maybe<Store>;
   register: User;
+  updateProductInCart: Cart;
 };
 
 
@@ -156,6 +156,11 @@ export type MutationDeleteStoreArgs = {
 
 export type MutationRegisterArgs = {
   input?: InputMaybe<UserInput>;
+};
+
+
+export type MutationUpdateProductInCartArgs = {
+  input: CartInput;
 };
 
 export type Order = {
@@ -527,6 +532,7 @@ export type MutationResolvers<ContextType = Context, ParentType extends Resolver
   deleteCategory?: Resolver<Maybe<ResolversTypes['Category']>, ParentType, ContextType, RequireFields<MutationDeleteCategoryArgs, 'id'>>;
   deleteStore?: Resolver<Maybe<ResolversTypes['Store']>, ParentType, ContextType, RequireFields<MutationDeleteStoreArgs, 'id'>>;
   register?: Resolver<ResolversTypes['User'], ParentType, ContextType, Partial<MutationRegisterArgs>>;
+  updateProductInCart?: Resolver<ResolversTypes['Cart'], ParentType, ContextType, RequireFields<MutationUpdateProductInCartArgs, 'input'>>;
 };
 
 export type OrderResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Order'] = ResolversParentTypes['Order']> = {
