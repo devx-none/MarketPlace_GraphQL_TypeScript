@@ -45,8 +45,10 @@ export const resolvers: Resolvers = {
     },
   },
   Cart: {
-    products: async (parent, args) => {
-      const products: Array<IProduct> = await Cart.find({product:{$in:parent.products}});
+     products: async (cart: ICart) => {
+      const products: Array<IProduct> = await Product.find({
+        _id: { $in: cart.products },
+      });
       return products;
     },
   },

@@ -19,7 +19,7 @@ export interface ICart extends Document {
       //   quantity : { type: Schema.Types.Number}
       // }],
       products : [{type: Schema.Types.ObjectId, ref: 'product'}],
-      amount : { type: Schema.Types.Number},
+      amount : { type: Schema.Types.Number ,default: 0},
       // status : { type: Schema.Types.Boolean, default: false},
     },
 
