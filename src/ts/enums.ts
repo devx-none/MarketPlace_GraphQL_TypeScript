@@ -8,14 +8,12 @@ export enum StoreStatus {
   INACTIVE = "INACTIVE",
 }
 
-export enum DeliveryType {
-  STANDARD = "STANDARD",
-  EXPRESS = "EXPRESS",
+export enum AccountStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
 }
 
-export enum DeliveryStatus {
-  PENDING = "PENDING",
-  SHIPPED = "SHIPPED",
-  CANCELLED = "CANCELLED",
-  UNPAID = "UNPAID",
+export enum Sort {
+  ascending = 'ascending',
+  descending = 'descending',
 }

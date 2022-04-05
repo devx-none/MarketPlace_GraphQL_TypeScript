@@ -15,12 +15,18 @@ export const typeDefs = gql`
     ADMIN
   }
 
+  enum AccountStatus {
+    ACTIVE
+    INACTIVE
+  }
+
   type User {
     id: ID!
     firstName: String!
     lastName: String!
     email: String!
     role: Role!
+    AccountStatus: AccountStatus!
   }
 
   type AuthPayload {
