@@ -2,8 +2,7 @@ import { gql } from 'apollo-server-express';
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
-
-input OrderInput {
+  input OrderInput {
     user: String!
     cart: ID!
     country: String!
@@ -15,6 +14,7 @@ input OrderInput {
     traking: String!
     estimatedTime: String!
   }
+
   type Order {
     id: ID!
     user: String!
@@ -27,29 +27,13 @@ input OrderInput {
     status: String!
     traking: String!
     estimatedTime: String!
-    
-  }
-
-  type Cart {
-    id: ID!
-    user: String!
-    products: [Product]
-    amount: Float!
-
-  }
-  type Product {
-    id: ID!
-    name: String!
-    price: Float!
-    discount: Float!
   }
 
   type Query {
-    orders(user: String!):Order
+    orders(user: String!): Order
   }
 
   type Mutation {
     createOrder(input: OrderInput!): Order!
-
   }
 `;

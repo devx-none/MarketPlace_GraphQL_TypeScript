@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 // Construct a schema, using GraphQL schema language
 export const typeDefs = gql`
@@ -7,6 +7,14 @@ export const typeDefs = gql`
     products: [ID!]!
     amount: Float!
   }
+
+  type Cart {
+    id: ID!
+    user: String!
+    products: [Product]
+    amount: Float!
+  }
+
   type Cart {
     id: ID!
     user: String!

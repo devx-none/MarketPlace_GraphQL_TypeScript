@@ -27,7 +27,7 @@ export const typeDefs = gql`
   type Mutation {
     addSuper(input: SuperInput): Super!
     addImage(input: FileInput): [String!]
-    confirmUserIsSeller(id: ID!): User!
-    updateUserAccountStatus(id: ID!, status: AccountStatus!): User!
+    confirmUserIsSeller(id: ID!): User
+    updateUserAccountStatus(id: ID!, status: AccountStatus!): User
   }
 `;

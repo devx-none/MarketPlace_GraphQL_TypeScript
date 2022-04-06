@@ -27,6 +27,7 @@ export const typeDefs = gql`
     email: String!
     role: Role!
     AccountStatus: AccountStatus!
+    Store: Store
   }
 
   type AuthPayload {
@@ -39,7 +40,7 @@ export const typeDefs = gql`
   type Mutation {
     register(input: UserInput): AuthPayload
     login(email: String!, password: String!): AuthPayload
-    updateRole(status: String!): AuthResult
+    updateRole(status: Role!): AuthResult
     updatePassword(oldPassword: String!, newPassword: String!): User
   }
 `;

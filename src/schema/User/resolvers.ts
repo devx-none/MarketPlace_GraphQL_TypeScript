@@ -72,7 +72,6 @@ export const resolvers: Resolvers = {
 
       return auth;
     },
-
     updateRole: async (_, { status }, { user }) => {
       if (!['USER', 'SELLER'].includes(status)) {
         throw new AuthenticationError(
