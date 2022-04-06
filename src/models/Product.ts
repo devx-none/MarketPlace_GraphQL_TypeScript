@@ -1,8 +1,6 @@
 import { Schema, model } from 'mongoose';
-import { IStore, ICategory, IBrand } from '@models/index';
-
+import { IStore, ICategory, IBrand, IMedia } from '@models/index';
 // 1. Create an interface representing a document in MongoDB.
-
 export interface IProduct {
   id: string;
   name: string;
@@ -13,7 +11,7 @@ export interface IProduct {
   discount: number;
   stock: number;
   description: string;
-  thumbnails: Array<string>;
+  thumbnails: IMedia[];
 }
 
 // 2. Create a Schema corresponding to the document interface.

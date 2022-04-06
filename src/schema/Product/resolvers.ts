@@ -24,7 +24,6 @@ export const resolvers: Resolvers = {
   Mutation: {
     createProduct: async (_, { input }) => {
       // create product in Product model
-
       const images = await multiFileUpload(input.thumbnails as IFile[]);
 
       input.thumbnails = images;
