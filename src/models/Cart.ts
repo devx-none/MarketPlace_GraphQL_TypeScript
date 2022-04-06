@@ -20,7 +20,6 @@ export interface ICart extends Document {
       // }],
       products : [{type: Schema.Types.ObjectId, ref: 'product'}],
       amount : { type: Schema.Types.Number ,default: 0},
-      // status : { type: Schema.Types.Boolean, default: false},
     },
 
     { timestamps: true }
